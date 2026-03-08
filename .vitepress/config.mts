@@ -78,7 +78,10 @@ export default withMermaid({
           },
           {
             text: 'Extensions',
-            items: [{ text: 'Development Environment', link: '/docs/panel/extensions/dev-environment' }],
+            items: [
+              { text: 'Development Environment', link: '/docs/panel/extensions/dev-environment' },
+              { text: 'Extension File Structure', link: '/docs/panel/extensions/file-structure' },
+            ],
           },
         ],
       },
@@ -128,5 +131,9 @@ export default withMermaid({
     search: {
       provider: 'local',
     },
+  },
+
+  sitemap: {
+    hostname: 'https://calagopus.com',
   },
 });
