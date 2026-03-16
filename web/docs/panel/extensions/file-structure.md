@@ -2,7 +2,19 @@
 
 Extensions are split into 3 main file structures. Frontend, Backend, Database.
 
-Package name with underscores simply means dots are replaced with underscores, so `dev.0x7d8.test` turns into `dev_0x7d8_test`.
+All Extensions have a package name, which is defined in the backend `Cargo.toml` file, and is also required in the `Metadata.toml` file.
+These are semi-java-like package names, so they should be all lowercase, and can contain dots, for example `dev.0x7d8.test`.
+
+Package name with underscores (also referred to as package identifiers) simply means dots are replaced with underscores, so `dev.0x7d8.test` turns into `dev_0x7d8_test`.
+
+## Initializing an Extension
+
+If you want to save some time, you can use the extension templates to quickly get an extension up and running.
+
+```bash
+# create a new extension from the template, replace the name with your package name with underscores
+calagopus-panel extensions init dev.0x7d8.test # <-- replace this with your package name
+```
 
 ## Frontend
 
@@ -12,8 +24,8 @@ frontend/extensions/
     package.json # REQUIRED file containing additional dependencies
     public/ # optional directory to include static files,
       file1.jpg # this file would be available at <url>/file1.jpg
-    app.css # optional css file that will be bundled into the main panel css
     src/ # REQUIRED directory for typescript src
+      app.css # optional css file that will be bundled into the main panel css
       index.ts # REQUIRED file containing extension entrypoint
 ```
 
@@ -127,22 +139,28 @@ impl Extension for ExtensionStruct {
 
 ## Database (optional)
 
-::: danger
-This is not final.
-:::
-
 ```bash
-database/src/schema/extensions/
-  (package_name_with_underscores).ts
+database/extension-migrations/
+  (package_name_with_underscores)/
+    (yyyymmddhhmmss)_migration_name/
+      up.sql # REQUIRED file containing the SQL statements to apply the migration
+      down.sql # REQUIRED file containing the SQL statements to rollback the migration
 ```
 
-### (package_name_with_underscores).ts
+### up.sql
 
-```ts
-import { index, integer, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
-import { DatabaseDefinitions } from '@/schema/table';
+```sql
+-- SQL statements to apply the migration, for example:
+CREATE TABLE IF NOT EXISTS dev_0x7d8_test_table (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
 
-export default (definitions: DatabaseDefinitions) => {
-  // table definitions, use your editor IDE to explore
-};
+### down.sql
+
+```sql
+-- SQL statements to rollback the migration, for example:
+DROP TABLE IF EXISTS dev_0x7d8_test_table;
 ```
