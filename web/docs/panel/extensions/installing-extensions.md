@@ -12,7 +12,7 @@ To install an extension, the steps will vary depending on whether you are using 
 ::::tabs
 === With Docker
 
-The process for installing extensions with the Docker image pretty straightforward. First, ensure you are using the `:heavy` or `:nightly-heavy` Docker image variant, as the regular `:latest` and `:nightly` images do not include the necessary tools to install extensions. [Click here to view the guide on how to change the Docker image variant](../installtion/docker.md#change-the-docker-image-variant-optional).
+The process for installing extensions with the Docker image pretty straightforward. First, ensure you are using the `:heavy` or `:nightly-heavy` Docker image variant, as the regular `:latest` and `:nightly` images do not include the necessary tools to install extensions. [Click here to view the guide on how to change the Docker image variant](../installation/docker.md#change-the-docker-image-variant-optional).
 
 Then, after you have ran `docker compose up -d` to (re)start the Panel with the new image variant, you can then access the extension management page in the Panel and upload the `.c7s.zip` file for your extension. The Panel will handle the rest of the installation process for you.
 
