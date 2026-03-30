@@ -50,11 +50,19 @@ curl -o compose.yml https://raw.githubusercontent.com/calagopus/panel/refs/heads
 ls -lh # should show you the compose.yml file
 ```
 
-```bash [With automatic Database Backups]
+```bash [Basic with automatic Database Backups]
 mkdir calagopus-panel
 cd calagopus-panel
 
 curl -o compose.yml https://raw.githubusercontent.com/calagopus/panel/refs/heads/main/compose.with-db-backups.yml
+ls -lh # should show you the compose.yml file
+```
+
+```bash [Heavy Image (Support for Extensions)]
+mkdir calagopus-panel
+cd calagopus-panel
+
+curl -o compose.yml https://raw.githubusercontent.com/calagopus/panel/refs/heads/main/compose.heavy.yml
 ls -lh # should show you the compose.yml file
 ```
 
