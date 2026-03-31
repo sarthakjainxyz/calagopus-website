@@ -113,6 +113,16 @@ Default value:
 APP_DEBUG=false
 ```
 
+## APP_ENABLE_WINGS_PROXY
+
+The `APP_ENABLE_WINGS_PROXY` variable determines whether the Panel should enable the Wings Proxy feature. This feature allows the Panel to act as a proxy for communication between the Panel and Wings, which can be useful in certain deployment scenarios (Especially when simplifying homelabs). The downside being that the panel has to handle all traffic between users and wings which can lead to performance issues in high-traffic environments. In a production environment, it is generally recommended to set this variable to `false` and use a direct connection between the Panel and Wings.
+
+Default value:
+
+```plaintext
+APP_ENABLE_WINGS_PROXY=false
+```
+
 ## APP_USE_DECRYPTION_CACHE
 
 The `APP_USE_DECRYPTION_CACHE` variable determines whether the Panel should use a decryption cache for improving performance when handling encrypted data. Enabling this cache can reduce the overhead of decrypting data multiple times, especially in high-traffic scenarios. In a production environment, this will mean that decrypted data is temporarily stored in redis for faster access which can be considered a security risk depending on your threat model.
